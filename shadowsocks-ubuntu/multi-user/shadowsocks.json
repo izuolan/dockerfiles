@@ -1,0 +1,16 @@
+{
+    "server":"0.0.0.0",
+    "server_port":1984,
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "port_password":{
+         "11216":"echo11216",
+         "11217":"echo11217",
+         "11218":"echo11218",
+         "11219":"echo11219",
+         "11220":"echo11220"
+    },
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "fast_open": false
+}
