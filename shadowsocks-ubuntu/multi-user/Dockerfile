@@ -20,7 +20,6 @@ ADD shadowsocks.json /etc/
 ADD start.sh /usr/local/bin/start.sh
 RUN chmod 755 /usr/local/bin/start.sh
 
-EXPOSE $SS_SERVER_PORT
 
 CMD ["sh", "-c", "start.sh"]
 #ENTRYPOINT ["/usr/local/bin/ssserver"]
