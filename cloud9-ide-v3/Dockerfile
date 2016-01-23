@@ -2,8 +2,7 @@
 # Based on a work at https://github.com/docker/docker.
 # ------------------------------------------------------------------------------
 # Pull base image.
-# FROM ubuntu:trusty
-FROM phusion/baseimage
+FROM ubuntu:trusty
 MAINTAINER ZuoLan <i@zuolan.me>
 
 # ------------------------------------------------------------------------------
