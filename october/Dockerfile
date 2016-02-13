@@ -2,10 +2,10 @@ FROM tutum/lamp:latest
 RUN rm -fr /app
 ADD app/ /app
 
-#RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y libjpeg62-turbo-dev libmcrypt-dev libpng12-dev
-#RUN docker-php-ext-install mcrypt
-#RUN docker-php-ext-install gd
-#RUN docker-php-ext-install mbstring
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y libjpeg62-turbo-dev libmcrypt-dev libpng12-dev
+RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install gd
+RUN docker-php-ext-install mbstring
 
 RUN apt-get autoremove -y \
     && apt-get autoclean -y \
