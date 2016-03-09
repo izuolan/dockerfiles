@@ -10,7 +10,7 @@
 
 3.运行容器
 
-`docker run -d -v /etc/shadowsocks.json：/etc/shadowsocks.json -p [11216:11216] [Images Name] -c /etc/shadowsocks.json`
+`docker run -d -v /path/shadowsocks.json：/etc/shadowsocks.json -p 20101-21231:20101-21231 [Images Name] -c /etc/shadowsocks.json`
 
 3.测试运行
 
