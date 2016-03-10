@@ -1,21 +1,31 @@
-基于ubuntu的shadowsocks的Docker镜像
+#### Edit `/your-path/shadowsocks.json` in your local
+```
+{
+    "server":"0.0.0.0",
+    "server_port":1984,
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "port_password":{
+         "11216":"pass11216",
+         "11217":"pass11217",
+         "11218":"pass11218",
+         "11219":"pass11219",
+         "11220":"pass11220"
+    },
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "fast_open": false
+}
 
-**以下是多用户的部署情况**
+```
 
-##部署说明
+#### Run
+```
+docker run -d -v /your-path/shadowsocks.json:/etc/shadowsocks.json -p 11216-11220:11216-11220 zuolan/shadowsocks-multi-user
+```
 
-1.安装并测试Docker，可以参考官方文档。
-
-2.拉取镜像
-
-3.运行容器
-
-`docker run -d -v /path/shadowsocks.json：/etc/shadowsocks.json -p 20101-21231:20101-21231 [Images Name] -c /etc/shadowsocks.json`
-
-3.测试运行
+#### Test
 
 `docker ps -a`
 
-如果出现up即为安装成功。
-
-##配置说明
+`docker logs [Container ID]`
