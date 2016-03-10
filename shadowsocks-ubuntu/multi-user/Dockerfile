@@ -1,8 +1,6 @@
 FROM ubuntu:14.04
 MAINTAINER ZuoLan <i@@zuolan.me>
 
-ENV REFRESHED_AT 2015-12-16
-
 RUN apt-get -qq update && \
     apt-get install -q -y wget build-essential python-pip python-m2crypto && \
     apt-get clean && \
