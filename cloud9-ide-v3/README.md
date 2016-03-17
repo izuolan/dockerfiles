@@ -18,16 +18,16 @@ This repository contains Dockerfile of Cloud9 IDE with some usefull features for
 
 Download automated build from public Docker Hub Registry: 
 
-    docker pull agungf/cloud9-ide
+    docker pull zuolan/cloud9-ide
 
 alternatively, you can build an image from Dockerfile:
 
-    docker build -t="$USER/cloud9-ide" github.com/agungf/cloud9-ide
+    docker build -t="$USER/cloud9-ide" .
     
     
 ## Basic Usage
 
-    docker run -it -d -p 8181:8181 -p 2222:22 agungf/cloud9-ide
+    docker run -it -d -p 8181:8181 -p 2222:22 zuolan/cloud9-ide
     
 It will take care all the defaults to:
 
@@ -37,15 +37,12 @@ It will take care all the defaults to:
     
 You can add a workspace as a volume directory with the argument *-v /your-path/workspace/:cloud9/workspace* like this :
 
-    docker run -it -d -p 8181:8181 -v /your-path/workspace/:/cloud9/workspace agungf/cloud9-ide
+    docker run -it -d -p 8181:8181 -v /your-path/workspace/:/cloud9/workspace zuolan/cloud9-ide
 
 
 ## Advance Usage
 
 Get the latest version from github
-
-    git clone https://github.com/agungf/cloud9-ide
-    cd cloud9-ide/
 
 Run with docker compose:
 

@@ -2,6 +2,7 @@
 # Based on a work at https://github.com/docker/docker.
 # ------------------------------------------------------------------------------
 # Pull base image.
+# FROM tutum/ubuntu
 FROM ubuntu:trusty
 MAINTAINER ZuoLan <i@zuolan.me>
 

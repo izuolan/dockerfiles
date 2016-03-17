@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER ZuoLan <i@@zuolan.me>
+MAINTAINER izuolan <i@zuolan.me>
 
 RUN apt-get -qq update && \
     apt-get install -q -y wget build-essential python-pip python-m2crypto && \

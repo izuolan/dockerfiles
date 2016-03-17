@@ -1,4 +1,5 @@
 FROM ubuntu:14.04
+MAINTAINER izuolan <i@zuolan.me>
 
 RUN apt-get update && apt-get install shellinabox
 

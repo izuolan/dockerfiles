@@ -1,4 +1,7 @@
+# FROM tutum/lamp
 FROM php:apache
+MAINTAINER izuolan <i@zuolan.me>
+
 RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
