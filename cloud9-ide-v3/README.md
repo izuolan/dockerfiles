@@ -27,7 +27,7 @@ alternatively, you can build an image from Dockerfile:
     
 ## Basic Usage
 
-    docker run -it -d -p 8181:8181 -p 2222:22 zuolan/cloud9-ide
+    docker run -it -d -e ROOT_PASS="yourpassword" -p 8181:8181 -p 2222:22 zuolan/cloud9-ide
     
 It will take care all the defaults to:
 
