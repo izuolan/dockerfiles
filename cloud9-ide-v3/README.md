@@ -10,7 +10,7 @@ This repository contains Dockerfile of Cloud9 IDE with some usefull features for
 - Optimized build process (please suggest if any idea to make it better)
 
 # Base Docker Image
-[tutum/ubuntu:trusty](https://registry.hub.docker.com/u/tutum/ubuntu/)
+* ubuntu:trusty
 
 # Installation
 
@@ -18,29 +18,29 @@ This repository contains Dockerfile of Cloud9 IDE with some usefull features for
 
 Download automated build from public Docker Hub Registry: 
 
-    docker pull zuolan/cloud9-ide
+    docker pull zuolan/cloud9
 
 alternatively, you can build an image from Dockerfile:
 
-    docker build -t="$USER/cloud9-ide" .
+    docker build -t="$USER/cloud9" .
     
     
 ## Basic Usage
 
-    docker run -it -d -e ROOT_PASS="yourpassword" -p 8181:8181 -p 2222:22 zuolan/cloud9-ide
+    docker run -it --name=cloud9 -d -p 8181:8181 -e ROOT_PASS='yourpassword' -v /yourpath/workspace/:/cloud9/workspace zuolan/cloud9
     
 It will take care all the defaults to:
 
 - Cloud9 Basic http auth User `root` , with DEFAULT password: `secret`
-- See Auto generated SSH password for root at log, `docker logs <continer instance name>`
+- See Auto generated SSH password for root at log, `docker logs cloud9`
 - Workspace directory at `/cloud9/workspace` 
-    
-You can add a workspace as a volume directory with the argument *-v /your-path/workspace/:cloud9/workspace* like this :
-
-    docker run -it -d -p 8181:8181 -v /your-path/workspace/:/cloud9/workspace zuolan/cloud9-ide
 
 
 ## Advance Usage
+
+#### Base Docker Image
+
+* [tutum/ubuntu:trusty](https://registry.hub.docker.com/u/tutum/ubuntu/)
 
 Get the latest version from github
 
