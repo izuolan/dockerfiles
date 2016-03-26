@@ -1,51 +1,21 @@
-# ------------------------------------------------------------------------------
-# Based on a work at https://github.com/docker/docker.
-# ------------------------------------------------------------------------------
-# Pull base image.
-# FROM tutum/ubuntu
 FROM ubuntu:trusty
 MAINTAINER ZuoLan <i@zuolan.me>
 
-# ------------------------------------------------------------------------------
-# Install dependencies
-RUN apt-get update && apt-get -y install git curl build-essential supervisor
+RUN buildDeps='make build-essential g++ gcc python curl ca-certificates' && softDeps="nodejs git" \
+ && apt-get update && apt-get upgrade -y \
+ && apt-get install -y $buildDeps --no-install-recommends \
+ && curl -sL https://deb.nodesource.com/setup | sudo bash - \
+ && apt-get install -y $softDeps \
+ && npm install -g forever && npm cache clean \
+ && git clone https://github.com/c9/core.git /cloud9 && cd /cloud9 \
+ && scripts/install-sdk.sh \
+ && apt-get purge -y --auto-remove $buildDeps \
+ && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+ && npm cache clean
 
-# ------------------------------------------------------------------------------
-# Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
-RUN apt-get -y install nodejs
+VOLUME /workspace
+EXPOSE 8181 
+ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "-l", "0.0.0.0"]
 
-# ------------------------------------------------------------------------------
-# Install Cloud9
-RUN git clone https://github.com/c9/core.git /cloud9
-WORKDIR /cloud9
-RUN scripts/install-sdk.sh
-
-# ------------------------------------------------------------------------------
-# Add workspace volumes
-RUN mkdir /cloud9/workspace
-VOLUME /cloud9/workspace
-
-# ------------------------------------------------------------------------------
-# Set default workspace dir
-ENV C9_WORKSPACE /cloud9/workspace
-
-# ------------------------------------------------------------------------------
-# Add supervisord conf
-ADD supervisord.conf /etc/supervisor/conf.d/
-
-# ------------------------------------------------------------------------------
-# clean cache
-RUN apt-get autoremove -y
-RUN apt-get autoclean -y
-RUN apt-get clean -y
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN npm cache clean
-
-# ------------------------------------------------------------------------------
-# Expose ports.
-EXPOSE 80
-
-# ------------------------------------------------------------------------------
-# Start supervisor, define default command.
-ENTRYPOINT /usr/bin/supervisord
+#CMD["--auth","username:password"]
