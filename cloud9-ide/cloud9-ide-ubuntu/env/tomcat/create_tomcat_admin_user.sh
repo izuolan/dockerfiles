@@ -1,5 +1,9 @@
 #!/bin/bash
 
+TOMCAT_MAJOR_VERSION="8"
+TOMCAT_MINOR_VERSION="8.0.11"
+CATALINA_HOME="/tomcat"
+
 if [ -f /.tomcat_admin_created ]; then
     echo "Tomcat 'admin' 已经创建！！"
     exit 0
@@ -21,7 +25,7 @@ echo '<role rolename="admin-gui"/>' >> ${CATALINA_HOME}/conf/tomcat-users.xml
 echo '<role rolename="admin-script"/>' >> ${CATALINA_HOME}/conf/tomcat-users.xml
 echo "<user username=\"admin\" password=\"${PASS}\" roles=\"manager-gui,manager-script,manager-jmx,admin-gui, admin-script\"/>" >> ${CATALINA_HOME}/conf/tomcat-users.xml
 echo '</tomcat-users>' >> ${CATALINA_HOME}/conf/tomcat-users.xml 
-echo "=> Done!"
+echo "=> 完成！！"
 touch /.tomcat_admin_created
 
 echo "========================================================================"
@@ -29,4 +33,5 @@ echo "现在您可以使用下面账号配置Tomcat服务器："
 echo ""
 echo "    admin:${PASS}"
 echo ""
+echo "启动Tomcat：${CATALINA_HOME}/bin/catalina.sh run"
 echo "========================================================================"

@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if [ ! -f /.tomcat_admin_created ]; then
-    /create_tomcat_admin_user.sh
-fi
+TOMCAT_MAJOR_VERSION="8"
+TOMCAT_MINOR_VERSION="8.0.11"
+CATALINA_HOME="/tomcat"
 
-exec ${CATALINA_HOME}/bin/catalina.sh run
+if [ ! -f /.tomcat_admin_created ]; then
+    ./create_tomcat_admin_user.sh
+fi

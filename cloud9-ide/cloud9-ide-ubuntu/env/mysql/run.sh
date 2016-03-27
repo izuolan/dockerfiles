@@ -8,6 +8,8 @@ LOG="/var/log/mysql/error.log"
 MYSQL_USER=admin
 MYSQL_PASS=**Random**
 
+# read -p "请输入MySQL的root密码：" ROOT_PASS
+
 # 设置配置文件的权限
 chmod 644 ${CONF_FILE}
 chmod 644 /etc/mysql/conf.d/mysqld_charset.cnf
@@ -25,7 +27,7 @@ StartMySQL ()
         fi
         echo "=> 等待确认MySQL服务启动，trying ${i}/${LOOP_LIMIT} ..."
         sleep 1
-        mysql -uroot -e "status" > /dev/null 2>&1 && break
+        mysql -uroot -p -e "status" > /dev/null 2>&1 && break
     done
 }
 
@@ -50,7 +52,7 @@ CreateMySQLUser()
     echo "    mysql -u$MYSQL_USER -p$PASS -h<host> -P<port>"
     echo ""
     echo "如果你是自动生成密码，请记住尽快更改上述密码！！"
-    echo "MySQL的'root'用户没有密码，但只允许本地连接。"
+    echo "MySQL的'root'用户只允许本地连接。"
     echo "========================================================================"
 }
 
