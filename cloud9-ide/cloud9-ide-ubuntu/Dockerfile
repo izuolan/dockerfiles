@@ -14,8 +14,8 @@ RUN buildDeps='make build-essential g++ gcc python curl ca-certificates' && soft
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
  && npm cache clean
 
-VOLUME /workspace
-ADD env /workspace/env
+VOLUME /root/workspace
+
 EXPOSE 8181 
 ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "-l", "0.0.0.0"]
 
