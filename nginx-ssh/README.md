@@ -41,7 +41,9 @@ set the environment variable `ROOT_PASS` to your specific password when running 
 
 If you want to use your SSH key to login, you can use `AUTHORIZED_KEYS` environment variable. You can add more than one public key separating them by `,`:
 
-`docker run -d -p 2222:22 -p 80:80 -e AUTHORIZED_KEYS="`cat ~/.ssh/id_rsa.pub`" zuolan/nginx-ssh`
+```
+docker run -d -p 2222:22 -p 80:80 -e AUTHORIZED_KEYS="`cat ~/.ssh/id_rsa.pub`" zuolan/nginx-ssh
+```
 
 #### About Nginx
 
