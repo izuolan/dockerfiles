@@ -1,0 +1,20 @@
+version: '2'
+services:
+  db:
+    image: mysql
+    expose:
+        - "3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=<PASSWORD>
+        - MYSQL_DATABASE=pagekit
+    volumes:
+        - ~/pagekit/mysql:/var/lib/mysql
+  pagekit:
+    image: pagekit/pagekit
+    ports:
+        - "8000:80"
+    links:
+        - db:database
+    volumes:
+        - ~/pagekit/storage:/pagekit/storage
+        - ~/pagekit/app/cache:/pagekit/app/cache
