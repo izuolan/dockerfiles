@@ -22,5 +22,32 @@ $ docker run -d \
   --link pagekit-mysql:mysql \
   zuolan/pagekit
 ```
+## Use Docker-compose
+
+* `mkdir ~/pagekit && cd ~/pagekit && vim docker-compose.yml`
+```
+version: '2'
+services:
+  db:
+    image: mysql
+    expose:
+        - "3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=YOURPASSWORD
+        - MYSQL_DATABASE=pagekit
+    volumes:
+        - ~/pagekit/mysql:/var/lib/mysql
+  pagekit:
+    image: pagekit/pagekit
+    ports:
+        - "8000:80"
+    links:
+        - db:db
+    volumes:
+        - ~/pagekit/storage:/pagekit/storage
+        - ~/pagekit/app/cache:/pagekit/app/cache
+```
+* Change your password `YOURPASSWORD`
+* Run `cd ~/pagekit && docker-compose up -d`
 
 On install, use `mysql` as host.
