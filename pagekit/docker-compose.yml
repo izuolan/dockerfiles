@@ -5,7 +5,7 @@ services:
     expose:
         - "3306"
     environment:
-        - MYSQL_ROOT_PASSWORD=<PASSWORD>
+        - MYSQL_ROOT_PASSWORD=YOURPASSWORD
         - MYSQL_DATABASE=pagekit
     volumes:
         - ~/pagekit/mysql:/var/lib/mysql
@@ -14,7 +14,7 @@ services:
     ports:
         - "8000:80"
     links:
-        - db:database
+        - db:db
     volumes:
         - ~/pagekit/storage:/pagekit/storage
         - ~/pagekit/app/cache:/pagekit/app/cache
