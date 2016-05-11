@@ -1,4 +1,5 @@
 FROM ubuntu:trusty
+MAINTAINER ZuoLan <i@zuolan.me>
 
 RUN apt-get update && \
     apt-get -y install \
