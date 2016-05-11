@@ -22,6 +22,8 @@ $ docker run -d \
   --link pagekit-mysql:mysql \
   zuolan/pagekit
 ```
+On install, use `mysql` as host.
+
 ## Use Docker-compose
 
 * `mkdir ~/pagekit && cd ~/pagekit && vim docker-compose.yml`
@@ -49,5 +51,4 @@ services:
 ```
 * Change your password `YOURPASSWORD`
 * Run `cd ~/pagekit && docker-compose up -d`
-
-On install, use `mysql` as host.
+* On install, use `db` as host.
