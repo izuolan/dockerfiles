@@ -21,8 +21,8 @@ $ docker run -d -p 8000:80 pagekit/pagekit
 ```
 $ docker run -d \
   -e MYSQL_ROOT_PASSWORD=YOURPASSWORD \
-  -e MYSQL_DATABASE=pagekit
-  --name pagekit-mysql
+  -e MYSQL_DATABASE=pagekit \
+  --name pagekit-mysql \
   mysql
 ```
 ```
