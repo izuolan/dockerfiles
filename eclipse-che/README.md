@@ -1,4 +1,3 @@
-![](http://eclipseche.org/wp-content/uploads/che_docker.png)
 
 #### How to run:
 
