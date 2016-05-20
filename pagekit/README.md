@@ -27,7 +27,7 @@ $ docker run -d \
 ```
 ```
 $ docker run -d \
-  -p 8000:80 \
+  -p 8080:80 \
   --link pagekit-mysql:mysql \
   --name pagekit-web \
   pagekit/pagekit

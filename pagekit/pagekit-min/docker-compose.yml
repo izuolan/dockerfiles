@@ -1,8 +1,0 @@
-version: '2'
-services:
-  pagekit:
-    image: pagekit/pagekit
-    ports:
-        - "8080:80"
-    volumes:
-        - ~/pagekit:/pagekit/
