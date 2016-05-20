@@ -12,7 +12,7 @@ services:
   pagekit:
     image: pagekit/pagekit
     ports:
-        - "8000:80"
+        - "8080:80"
     links:
         - db:db
     volumes:
