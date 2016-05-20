@@ -10,7 +10,7 @@
 
 Docker image for the Pagekit CMS
 
-**Uses nginx + php5-fpm**
+**Uses nginx + php5-fpm + MySQL**
 
 ## Usage
 ```
@@ -29,7 +29,7 @@ $ docker run -d \
 $ docker run -d \
   -p 8000:80 \
   --link pagekit-mysql:mysql \
-  --name pagekit-web
+  --name pagekit-web \
   pagekit/pagekit
 ```
 On install, use `mysql` as host.
