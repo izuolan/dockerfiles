@@ -14,7 +14,7 @@ Docker image for the Pagekit CMS
 
 ## Usage
 ```
-$ docker run -d -p 8000:80 pagekit/pagekit
+$ docker run -d -p 8080:80 pagekit/pagekit
 ```
 
 ## Use with a MySQL container
@@ -29,6 +29,7 @@ $ docker run -d \
 $ docker run -d \
   -p 8000:80 \
   --link pagekit-mysql:mysql \
+  --name pagekit-web
   pagekit/pagekit
 ```
 On install, use `mysql` as host.
@@ -51,7 +52,7 @@ services:
   pagekit:
     image: pagekit/pagekit
     ports:
-        - "8000:80"
+        - "8080:80"
     links:
         - db:db
     volumes:
