@@ -3,8 +3,6 @@ services:
   pagekit:
     image: pagekit/pagekit
     ports:
-        - "8000:80"
+        - "8080:80"
     volumes:
-        - ~/pagekit/storage:/pagekit/storage
-        - ~/pagekit/app/cache:/pagekit/app/cache
-        - ~/pagekit/pagekit.db:/pagekit/pagekit.db
+        - ~/pagekit:/pagekit/
