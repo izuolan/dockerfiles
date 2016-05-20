@@ -4,22 +4,17 @@ MAINTAINER ZuoLan <i@zuolan.me>
 RUN apt-get update && \
     apt-get -y install \
     nginx \
-    unzip \
-    wget \
     ca-certificates \
     php5 php5-fpm php5-cli php5-json php5-mysql php5-curl php5-sqlite
 
 ENV PAGEKIT_VERSION 1.0.3
 RUN mkdir /pagekit
 WORKDIR /pagekit
-# VOLUME ["/pagekit/storage", "/pagekit/app/cache"]
 VOLUME /pagekit
-# RUN wget https://github.com/pagekit/pagekit/releases/download/$PAGEKIT_VERSION/pagekit-$PAGEKIT_VERSION.zip -O /pagekit/pagekit.zip && \
-#    unzip /pagekit/pagekit.zip && rm /pagekit/pagekit.zip
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
-RUN apt-get autoremove wget unzip -y && \
+RUN apt-get autoremove -y && \
     apt-get autoclean -y && \
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
