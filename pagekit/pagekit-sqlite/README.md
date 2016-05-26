@@ -22,7 +22,6 @@ $ docker run -d \
 On install, use sqlite.
 
 ## Use Docker-compose
-* `git clone https://github.com/pagekit/pagekit.git`
 * `mkdir ~/pagekit && cd ~/pagekit && vim docker-compose.yml`
 ```
 version: '2'
@@ -34,5 +33,7 @@ services:
     volumes:
         - ~/pagekit:/pagekit/
 ```
+* `wget https://github.com/pagekit/pagekit/releases/download/1.0.3/pagekit-1.0.3.zip`
+* `cd ~/pagekit && unzip pagekit-1.0.3.zip`
 * Run `cd ~/pagekit && docker-compose up -d`
 * On install, use sqlite.
