@@ -27,7 +27,7 @@ On install, use sqlite.
 version: '2'
 services:
   pagekit:
-    image: pagekit/pagekit
+    image: pagekit/pagekit:sqlite
     ports:
         - "8080:80"
     volumes:
