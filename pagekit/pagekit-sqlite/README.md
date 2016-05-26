@@ -22,7 +22,7 @@ $ docker run -d \
 On install, use sqlite.
 
 ## Use Docker-compose
-8 `git clone https://github.com/pagekit/pagekit.git`
+* `git clone https://github.com/pagekit/pagekit.git`
 * `mkdir ~/pagekit && cd ~/pagekit && vim docker-compose.yml`
 ```
 version: '2'
