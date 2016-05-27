@@ -1,0 +1,12 @@
+hexo:
+  image: 'zuolan/hexo:latest'
+  container_name: 'blog'
+
+  volumes:
+    - '/var/run/docker.sock:/tmp/docker.sock:ro'
+    - '~/www:/www'
+  environment:
+    - 'CONTAINER=bind'
+    - 'VOLUMES=/config /data'
+
+  restart: always

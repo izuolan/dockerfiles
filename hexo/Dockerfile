@@ -17,20 +17,18 @@ RUN apk update && apk upgrade \
 
 # 初始化 Hexo
 WORKDIR /www
-VOLUME [ "/www/_config.yml", "/www/source", "/www/themes", "/root/.ssh/id_rsa", "/config" ]
 RUN npm install --no-optional hexo-cli -g \
-  && npm install --no-optional hexo --save \
-  && hexo init
+  && npm install --no-optional hexo --save
+VOLUME [ "/www", "/root/.ssh", "/config" ]
 
 # 配置 Webdav
 ADD webdav/* /etc/lighttpd/
-ADD webdav.sh /www/webdav.sh
-RUN chmod u+x /www/webdav.sh
+ADD webdav.sh /webdav.sh
+RUN chmod a+x /webdav.sh
 
 # 配置 inotifywait
-ADD ./entrypoint.sh /www/entrypoint.sh
-RUN chmod u+x /www/entrypoint.sh
+ADD ./entrypoint.sh /entrypoint.sh
+RUN chmod a+x /entrypoint.sh
 
 EXPOSE 4000
-ENTRYPOINT ["/www/entrypoint.sh"]
-
+ENTRYPOINT ["/entrypoint.sh"]
