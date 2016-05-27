@@ -1,0 +1,11 @@
+# Git files
+.git
+.gitignore
+
+# Build files
+build.sh
+buildNoCache.sh
+
+# Information files
+LICENSE
+README.md
