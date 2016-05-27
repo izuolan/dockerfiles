@@ -7,7 +7,7 @@ RUN apt-get update && \
     unzip \
     wget \
     ca-certificates \
-    php5 php5-fpm php5-cli php5-json php5-mysql php5-curl php5-sqlite
+    php5 php5-fpm php5-cli php5-json php5-mysql php5-curl
 
 ENV PAGEKIT_VERSION 1.0.2
 RUN mkdir /pagekit
