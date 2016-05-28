@@ -27,8 +27,8 @@ ADD webdav.sh /webdav.sh
 RUN chmod a+x /webdav.sh
 
 # 配置 inotifywait
-ADD ./entrypoint.sh /entrypoint.sh
-RUN chmod a+x /entrypoint.sh
+#ADD ./entrypoint.sh /entrypoint.sh
+#RUN chmod a+x /entrypoint.sh
 
-EXPOSE 4000
-ENTRYPOINT ["/entrypoint.sh"]
+EXPOSE 80 4000
+#ENTRYPOINT ["/entrypoint.sh"]
