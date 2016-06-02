@@ -18,8 +18,8 @@ RUN cd /tmp && \
     unzip ghost.zip -d /ghost && rm -f ghost.zip && \
     cd /ghost && \
     npm cache clean && \
-    npm install --production -d && \
-    npm install -g ghost-export && \
+    npm install --production -d
+RUN npm install -g ghost-export && \
     sed 's/127.0.0.1/0.0.0.0/' /ghost/config.example.js > /ghost/config.js && \
     useradd ghost --home /ghost
 
