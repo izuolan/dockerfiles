@@ -1,41 +1,47 @@
-FROM node:4.4
-MAINTAINER ZuoLan <i@zuolan.me>
+FROM node:0.12
 
-ENV GHOST_VERSION 0.8.0
-ENV BASE_PACKAGE="git wget inotify-tools python-setuptools python-dev libxml2-dev libxslt-dev"
-ENV EXTEND_PACKAGE="curl unzip gcc make"
-ENV NODE_ENV="production"
-
-# Install Base Package
-RUN apt-get update && \
-    apt-get install ${BASE_PACKAGE} ${EXTEND_PACKAGE} -yq
-RUN easy_install pip && \
-    pip install buster
+RUN \
+  apt-get update && apt-get install unzip python-setuptools python-dev libxml2-dev libxslt-dev -yq && \
+  easy_install pip
 
 # Install Ghost
-RUN cd /tmp && \
-    curl -sSL "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" -o ghost.zip && \
-    unzip ghost.zip -d /ghost && rm -f ghost.zip && \
-    cd /ghost && \
-    npm cache clean && \
-    npm install --production -d
-RUN npm install -g ghost-export && \
-    useradd ghost --home /ghost
+ENV GHOST_VERSION 0.7.1
+RUN \
+  cd /tmp && \
+  curl -sSL "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" -o ghost.zip && \
+  unzip ghost.zip -d /ghost && \
+  rm -f ghost.zip && \
+  echo "unzip completed"
 
-WORKDIR /ghost
-ADD start.sh /start.sh
+RUN \
+  cd /ghost && \
+  npm cache clean && \
+  npm install --production -d
+
+RUN \
+  sed 's/127.0.0.1/0.0.0.0/' /ghost/config.example.js > /ghost/config.js && \
+  useradd ghost --home /ghost
+
+#install buster
+RUN pip install buster
+
+#install md exporter
+RUN \
+ cd / ghost && \
+ npm install -g ghost-export
+
+ADD start.bash /ghost-start
 ADD publish.sh /ghost/publish.sh
 RUN chmod +x /ghost/publish.sh
 
-# Clean cache
-RUN apt-get autoremove -y && \
-    apt-get autoclean -y && \
-    apt-get clean -y && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    npm cache clean
+RUN apt-get install inotify-tools -y
 
-VOLUME ["/export.md", "/ghost/content"]
+ENV NODE_ENV production
+
+VOLUME ["/export.md", "/ghost/content", "/ghost/static"]
+
+WORKDIR /ghost
 
 EXPOSE 2368
 
-CMD ["bash", "/start.sh"]
+CMD ["bash", "/ghost-start"]

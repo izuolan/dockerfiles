@@ -1,5 +1,7 @@
 #!/bin/bash
+
 GHOST="/ghost"
+
 sed -i -e "s|http://my-ghost-blog.com|${BLOG_DOMAIN}|g" /ghost/config.js
 
 #start background watcher for buster
@@ -11,3 +13,4 @@ su ghost << EOF
 cd "$GHOST"
 NODE_ENV=${NODE_ENV:-production} npm start
 EOF
+
