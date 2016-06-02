@@ -8,10 +8,10 @@ ENV NODE_ENV="production"
 
 # Install Base Package
 RUN apt-get update && \
-    apt-get install ${BASE_PACKAGE} ${EXTEND_PACKAGE} -yq && \
-    wget https://bootstrap.pypa.io/get-pip.py && \
-    python get-pip.py && rm get-pip.py && \
-    pip install buster
+    apt-get install ${BASE_PACKAGE} ${EXTEND_PACKAGE} -yq
+RUN wget https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py && rm get-pip.py
+RUN pip install buster
 
 # Install Ghost
 RUN cd /tmp && \
