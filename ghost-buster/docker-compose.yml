@@ -1,0 +1,24 @@
+ghost-buster:
+  image: umputun/ghost-buster-docker
+  restart: always
+  container_name: ghost-buster
+  environment:
+   - BLOG_DOMAIN=https://zuolan.me #<<-- EDIT THIS
+   - NODE_ENV=production
+  ports:
+    - "2368:2368"
+  volumes:
+    - ./static:/ghost/static
+    - ./content:/ghost/content
+    - ./export.md:/export.md
+caddy:
+  image: abiosoft/caddy
+  restart: always
+  container_name: ghost-caddy
+  links:
+   - ghost-buster:ghost-buster
+  ports:
+   - "9000:2015"
+  volumes:
+    - ./static:/srv
+

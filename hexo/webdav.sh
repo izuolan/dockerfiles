@@ -5,7 +5,7 @@ set -x
 USERNAME=webdav
 GROUP=webdav
 
-# Only allow read access by default
+# Allow read and write access by default
 READWRITE=${READWRITE:=true}
 
 # Add user if it does not exist
