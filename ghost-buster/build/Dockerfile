@@ -2,7 +2,7 @@ FROM node:4.4-slim
 MAINTAINER ZuoLan <i@zuolan.me>
 
 ENV GHOST_VERSION 0.8.0
-ENV BASE_PACKAGE="git wget inotify-tools  python-dev libxml2-dev libxslt-dev"
+ENV BASE_PACKAGE="git wget inotify-tools python-setuptools python-dev libxml2-dev libxslt-dev"
 ENV EXTEND_PACKAGE="curl unzip gcc make"
 ENV NODE_ENV="production"
 
