@@ -9,7 +9,8 @@ ENV NODE_ENV="production"
 # Install Base Package
 RUN apt-get update && \
     apt-get install ${BASE_PACKAGE} ${EXTEND_PACKAGE} -yq
-RUN easy_install pip
+RUN easy_install pip && \
+    pip install buster
 
 # Install Ghost
 RUN cd /tmp && \
