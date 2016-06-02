@@ -1,8 +1,8 @@
 #!/bin/sh
 echo "building static site"
 buster generate
-echo "export md"
-ghost-export /ghost /export.md
+# echo "export md"
+# ghost-export /ghost /export.md
 
 # workarounds for buster's issues
 sed -i -e 's|/index.html#disqus_thread|/#disqus_thread|g' /ghost/static/index.html

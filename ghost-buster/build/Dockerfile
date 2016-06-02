@@ -26,9 +26,9 @@ RUN \
 RUN pip install buster
 
 #install md exporter
-RUN \
- cd / ghost && \
- npm install -g ghost-export
+# RUN \
+#  cd / ghost && \
+#  npm install -g ghost-export
 
 ADD start.bash /ghost-start
 ADD publish.sh /ghost/publish.sh
@@ -38,7 +38,7 @@ RUN apt-get install inotify-tools -y
 
 ENV NODE_ENV production
 
-VOLUME ["/export.md", "/ghost/content", "/ghost/static"]
+VOLUME ["/ghost/content", "/ghost/static"]
 
 WORKDIR /ghost
 

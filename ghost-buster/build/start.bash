@@ -8,7 +8,7 @@ sed -i -e "s|http://my-ghost-blog.com|${BLOG_DOMAIN}|g" /ghost/config.js
 while inotifywait -e modify /ghost/content/data/ghost.db; do sleep 10 && /ghost/publish.sh; done &
 
 # Start Ghost
-chown -R ghost:ghost /data /ghost /ghost-override
+chown -R ghost:ghost /data /ghost
 su ghost << EOF
 cd "$GHOST"
 NODE_ENV=${NODE_ENV:-production} npm start
