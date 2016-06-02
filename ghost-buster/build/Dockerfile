@@ -1,4 +1,4 @@
-FROM node:4.4-slim
+FROM node:4.4
 MAINTAINER ZuoLan <i@zuolan.me>
 
 ENV GHOST_VERSION 0.8.0
