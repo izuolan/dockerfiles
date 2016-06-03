@@ -17,6 +17,7 @@ Docker image for the Pagekit CMS
 $ docker run -d \
   -p 8080:80 \
   --name pagekit-web \
+  -v ~/pagekit:/pagekit \
   pagekit/pagekit:sqlite
 ```
 On install, use sqlite.
