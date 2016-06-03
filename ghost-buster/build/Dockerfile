@@ -42,7 +42,7 @@ RUN chmod +x /ghost/publish.sh
 
 ENV NODE_ENV production
 
-VOLUME ["/data", "/ghost-override"]
+VOLUME ["/ghost/static", "/export.md", "/ghost-override"]
 
 WORKDIR /ghost
 
