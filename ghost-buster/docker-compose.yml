@@ -9,7 +9,7 @@ ghost-buster:
     - "2368:2368"
   volumes:
     - ./static:/ghost/static
-    - ./data:/ghost-override
+    - ./ghost-data:/ghost-override
     - ./export.md:/export.md
 caddy:
   image: abiosoft/caddy
