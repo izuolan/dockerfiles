@@ -1,3 +1,3 @@
 #!/bin/bash
-chmod 777 /var/www/html/
+chmod -R 777 /var/www/html/usr/
 exec apache2-foreground
