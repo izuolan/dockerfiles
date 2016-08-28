@@ -1,30 +1,26 @@
-FROM php:7.0-apache
+FROM ubuntu:trusty
 MAINTAINER ZuoLan <i@zuolan.me>
 
-# Install modules
-ENV base="ca-certificates libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libcurl4-openssl-dev"
+ENV base="ca-certificates nginx php5 php5-fpm php5-cli php5-json php5-mysql php5-curl"
 ENV build="unzip"
 RUN apt-get update && \
-    apt-get install -y ${base} ${build} && \
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
-    docker-php-ext-install iconv mcrypt mbstring pdo_mysql mysqli curl gd
+    apt-get install -y ${base} ${build}
 
-RUN cd /tmp && \
+RUN mkdir /typecho
+WORKDIR /typecho
+VOLUME /typecho/usr
+
+RUN cd /typecho && \
     curl -o typecho-master.zip -L https://github.com/typecho/typecho/archive/master.zip && \
-    unzip typecho-master.zip && \
-    mv -f /tmp/typecho-master/* /var/www/html/
-# curl -o Themia-for-TE-master.zip -L https://github.com/jrotty/Themia-for-TE/archive/master.zip && \
-# unzip Themia-for-TE-master.zip && mv ./Themia-for-TE-master /www/usr/themes/themia
+    unzip typecho-master.zip && rm typecho-master.zip
 
-WORKDIR /var/www/html/
-VOLUME /var/www/html/
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod a+x /entrypoint.sh
+ADD nginx.conf /etc/nginx/nginx.conf
 
-RUN apt-get purge --auto-remove -y ${build} && \
+RUN chown -R www-data: /typecho && \
+    apt-get purge --auto-remove -y ${build} && \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["sh", "-c", "service php5-fpm start && nginx"]
