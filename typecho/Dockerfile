@@ -11,7 +11,7 @@ RUN apt-get update && \
         sqlite3 \
         libapache2-mod-php5 \
         php5-mysql \
-        php5-sqlite
+        php5-sqlite \
         php5-mcrypt \
         php5-gd \
         php5-curl \
