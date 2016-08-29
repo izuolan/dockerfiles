@@ -5,7 +5,7 @@ ENV ALLOW_OVERRIDE **False**
 
 # Install base packages
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install \
+    apt-get -yq install \
         curl \
         apache2 \
         sqlite3 \
