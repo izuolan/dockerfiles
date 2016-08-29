@@ -5,13 +5,13 @@ ENV ALLOW_OVERRIDE **False**
 
 # Install base packages
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install \
+    apt-get -y install \
         curl \
         apache2 \
         sqlite3 \
         libapache2-mod-php5 \
         php5-mysql \
-        php5-sqlite
+        php5-sqlite \
         php5-mcrypt \
         php5-gd \
         php5-curl \
@@ -32,7 +32,8 @@ RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 
 RUN cd /app && \
     curl -o typecho-master.zip -L https://github.com/typecho/typecho/archive/master.zip && \
-    unzip typecho-master.zip && rm typecho-master.zip
+    unzip typecho-master.zip && mv typecho-master/* . && \
+    rm typecho-master.zip && rm -rf typecho-master
 
 RUN apt-get purge --auto-remove -y unzip && \
     apt-get autoremove -y && \
