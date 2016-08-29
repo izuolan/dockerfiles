@@ -23,6 +23,8 @@ services:
 
 #### Mysql
 
+容器启动之后，你需要先新建一个空的数据库`docker exec -it root_db_1 mysql -uroot -p` ，然后输入密码，使用`create database typecho;` 新建数据库，然后 `quit;` 退出，再打开 Typecho 安装页面。
+
 ```
 version: '2'
 services:
