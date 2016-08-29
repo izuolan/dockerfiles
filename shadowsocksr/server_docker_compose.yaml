@@ -1,0 +1,22 @@
+ssr:
+  restart: always
+  build: .
+  dockerfile: ./ssr_Dockerfile
+  container_name: ssr
+  command: ssserver -c /etc/ssr.json -v
+  volumes:
+    - ./:/etc
+  ports:
+    - "8086:8086"
+kcptun:
+  restart: always
+  build: .
+  dockerfile: ./kcp_Dockerfile
+  container_name: kcptun
+  ports:
+      - "9758:9758/udp"
+  command: sh -c "server_linux_amd64 -t 'ssr:8086' -l ':9758' -mode manual -nodelay 1 -resend 2 -nc 1 -interval 20"
+  environment:
+    KCPTUN_KEY: "please_change_me_tooooooolong"
+  links:
+    - ssr

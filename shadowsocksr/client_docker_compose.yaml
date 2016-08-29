@@ -1,0 +1,25 @@
+ssr:
+  restart: always
+  build: .
+  dockerfile: ./ssr_Dockerfile
+  container_name: ssr
+  command: sh -c "python -m SimpleHTTPServer 1088 & sslocal -s kcptun -c /etc/ssr.json -v"
+  volumes:
+    - ./:/etc
+    - ./proxy.pac:/proxy.pac
+  ports:
+    - "1083:1083"
+    - "1088:1088"
+  links:
+    - kcptun
+kcptun:
+  restart: always
+  build: .
+  dockerfile: ./kcp_Dockerfile
+  container_name: kcptun
+#  command: server_linux_amd64 -t "127.0.0.1:8086" -l ":9758"
+  command: client_linux_amd64 -r 'vps_ip:9758' -l ':8086' -mode manual -nodelay 1 -resend 2 -nc 1 -interval 20
+  environment:
+    KCPTUN_KEY: "please_change_me_tooooooolong"
+  ports:
+    - "9758:9758/udp"
