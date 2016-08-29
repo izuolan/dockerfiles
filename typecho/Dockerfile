@@ -5,7 +5,11 @@ ENV ALLOW_OVERRIDE **False**
 
 # Install base packages
 RUN apt-get update && \
+<<<<<<< HEAD
     apt-get -y install \
+=======
+    apt-get -yq install \
+>>>>>>> a11156a96621cc0d2a824b7f5500c114fd6dc5b0
         curl \
         apache2 \
         sqlite3 \
