@@ -43,4 +43,4 @@ mysql:
   volumes:
     - /home/zuolan/docker/mysql:/var/lib/mysql
   environment:
-    - MYSQL_ROOT_PASSWORD=49294929
+    - MYSQL_ROOT_PASSWORD=YOUR_PASSWORD
