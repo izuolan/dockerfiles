@@ -1,0 +1,46 @@
+# web server
+nginx:
+  image: reg.zuolan.me/library/nginx:alpine
+  ports:
+    - "80:80"
+    # - "443:443"
+  volumes:
+    # app
+    - /home/zuolan/docker/app/:/usr/share/nginx/html/
+    # nginx configs
+    - /home/zuolan/docker/conf.d/:/etc/nginx/conf.d/:ro
+    # certificates
+    # - ./server.crt/:/etc/nginx/server.crt:ro
+    # - ./server.key/:/etc/nginx/server.key:ro
+  links:
+    - fpm:__DOCKER_PHP_FPM__
+
+# php-fpm
+fpm:
+  image: reg.zuolan.me/library/php:7.0-fpm
+  ports:
+    - "9000:9000"
+  volumes:
+    - /home/zuolan/docker/app/:/usr/share/nginx/html
+    # Your php.ini
+    - /home/zuolan/docker/php/php.ini-production:/usr/local/etc/php/php.ini:ro
+  # environment:
+    # Set your APP env variables here:
+    # - APP_KEY=
+    # - DB_HOST=
+    # - DB_DATABASE=
+    # - DB_USERNAME=
+    # - DB_PASSWORD=
+  links:
+    - mysql:mysql
+
+# database
+mysql:
+  image: reg.zuolan.me/library/mysql:5.6
+  ports:
+    # Allow client to access 3306
+    - "3306:3306"
+  volumes:
+    - /home/zuolan/docker/mysql:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=49294929
