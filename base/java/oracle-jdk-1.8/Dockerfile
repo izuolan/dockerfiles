@@ -1,5 +1,4 @@
-FROM alpine
-MAINTAINER izuolan <i@zuolan.me>
+FROM alpine:edge
 
 ENV JAVA_VERSION_MAJOR=8 \
 JAVA_VERSION_MINOR=73 \

@@ -1,5 +1,4 @@
-FROM alpine
-MAINTAINER izuolan <i@zuolan.me>
+FROM alpine:edge
 
 RUN apk update && apk upgrade \
   && apk add ca-certificates build-base boost \

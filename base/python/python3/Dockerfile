@@ -1,9 +1,4 @@
-FROM alpine
-MAINTAINER izuolan <i@zuolan.me>
-
-RUN apk update && apk upgrade
-
-RUN apk add ca-certificates python3
-
-# Clean APK cache
-RUN rm -rf /var/cache/apk/*
+FROM alpine:edge
+RUN apk update && apk upgrade \
+  && apk add ca-certificates python3 \
+  && rm -rf /var/cache/apk/*
