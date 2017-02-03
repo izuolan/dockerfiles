@@ -1,0 +1,36 @@
+version: '2'
+services:
+  leanote:
+    container_name: leanote_app
+    image: zuolan/leanote:src
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./leanote:/leanote
+      - /etc/localtime:/etc/localtime:ro
+    links:
+      - mongo
+    restart: always
+
+  mongo:
+    container_name: leanote_db
+    image: mongo
+    volumes:
+      - ./data:/data/db
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+
+  initdb:
+    container_name: leanote_init
+    image: mongo
+    links:
+      - mongo
+    volumes:
+      - ./initdb.sh:/initdb.sh
+      - ./leanote/mongodb_backup:/mongodb_backup
+    command: sh /initdb.sh
+
+networks:
+  default:
+    external:
+      name: nginx
