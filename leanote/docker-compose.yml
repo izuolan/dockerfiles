@@ -23,12 +23,12 @@ services:
 
   initdb:
     container_name: leanote_init
-    image: zuolan/mongodb-tools
+    image: mongo
     links:
       - mongo
     volumes:
       - ./initdb.sh:/initdb.sh
-      - ./data:/data/db
+      - ./mongodb_backup:/mongodb_backup
     command: sh /initdb.sh
 
 networks:
