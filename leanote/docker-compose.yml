@@ -11,16 +11,19 @@ services:
       - /etc/localtime:/etc/localtime:ro
     links:
       - mongo
+    restart: always
 
   mongo:
     container_name: leanote_db
-    image: zuolan/mongo
+    image: mongo
     volumes:
       - ./data:/data/db
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
 
   initdb:
     container_name: leanote_init
-    image: zuolan/mongo
+    image: zuolan/mongodb-tools
     links:
       - mongo
     volumes:
@@ -31,4 +34,4 @@ services:
 networks:
   default:
     external:
-      name: leanote
+      name: nginx
