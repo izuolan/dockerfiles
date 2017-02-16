@@ -7,4 +7,4 @@ RUN apk add --no-cache git && \
 
 VOLUME /leanote
 EXPOSE 9000
-CMD ["sh","/leanote/bin/run.sh"]
+CMD ["sh","/leanote/bin/run-linux-amd64.sh"]
