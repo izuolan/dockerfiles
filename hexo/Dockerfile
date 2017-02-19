@@ -7,15 +7,15 @@ RUN apk add --update --no-cache git openssh inotify-tools && \
     npm install && \
     rm -rf /tmp/*
 
+COPY monitor.sh /monitor.sh
+RUN chmod a+x /monitor.sh
+
 RUN npm install --save hexo-generator-sitemap && \
     npm install --save hexo-generator-feed && \
     npm install --save hexo-deployer-git && \
     npm install --save hexo-renderer-jade && \
     npm install --save hexo-generator-archive
 
-COPY monitor.sh /monitor.sh
-RUN chmod a+x /monitor.sh
- 
 VOLUME ["/hexo/source", \
         "/hexo/themes", \
         "/hexo/public", \
