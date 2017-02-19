@@ -1,0 +1,19 @@
+FROM mhart/alpine-node
+WORKDIR /hexo
+
+RUN apk add --update --no-cache git openssh && \
+    npm install hexo-cli -g && \
+    hexo init . && \
+    npm install && \
+    rm -rf /tmp/*
+
+RUN npm install --save hexo-deployer-git
+
+VOLUME ["/hexo/source", \
+        "/hexo/themes", \
+        "/hexo/public", \
+        "/root/.ssh", \
+        "/root/.gitconfig"]
+
+EXPOSE 4000
+CMD ["hexo", "g"]
