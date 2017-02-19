@@ -17,7 +17,7 @@ INOTIFY_OPTONS="--monitor --exclude=(\.sw[p|x]|\~)"
 inotifywait -rqe ${INOTIFY_EVENTS} ${INOTIFY_OPTONS} ${VOLUMES} | \
     while read -r notifies;
     do
-    	echo -e “\n\n”
+    	echo -e "\n\n"
         echo $SEPARATOR
         echo "文件有变动："
         echo "$notifies"
@@ -26,7 +26,7 @@ inotifywait -rqe ${INOTIFY_EVENTS} ${INOTIFY_OPTONS} ${VOLUMES} | \
         echo $SEPARATOR
         hexo d -g
         chmod 777 -R /hexo/public
-        echo -e “\n\n”
+        echo -e "\n\n"
         echo "新的页面构建完成。"
         echo $SEPARATOR
     done
