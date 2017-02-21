@@ -1,23 +1,19 @@
 version: '2'
 services:
   hexo:
-    container_name: hexo_build
-    image: zuolan/hexo-alpine
+    container_name: hexo
+    image: zuolan/hexo
     restart: always
     volumes:
-      - ./_config.yml:/hexo/_config.yml:ro
-      - ./source:/hexo/source:ro
-      - ./themes:/hexo/themes:ro
-      - ~/.ssh:/root/.ssh
-      - ~/.gitconfig:/root/.gitconfig
-      - ~/public:/hexo/public
-    ports:
-      - "4000:4000"
+      - /:/host_dir
+      - $HEXO/:/mnt
+      - $HOME/.ssh:/root/.ssh
+      - $HOME/.gitconfig:/root/.gitconfig
   nginx:
     container_name: hexo_web
     image: nginx:alpine
     restart: always
     volumes:
-      - ~/public:/usr/share/nginx/html:ro
+      - $HEXO/public:/usr/share/nginx/html:ro
     ports:
-      - "4001:80"
+      - "4000:80"
