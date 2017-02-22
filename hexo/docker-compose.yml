@@ -4,16 +4,17 @@ services:
     container_name: hexo
     image: zuolan/hexo
     restart: always
+    environment:
+      - GIT_USER=izuolan
+      - GIT_EMAIL=i@zuolan.me
     volumes:
-      - /:/host_dir
-      - $HEXO/:/mnt
+      - ./:/mnt
       - $HOME/.ssh:/root/.ssh
-      - $HOME/.gitconfig:/root/.gitconfig
   nginx:
-    container_name: hexo_web
+    container_name: blog
     image: nginx:alpine
     restart: always
     volumes:
-      - $HEXO/public:/usr/share/nginx/html:ro
+      - ./public:/usr/share/nginx/html:ro
     ports:
       - "4000:80"

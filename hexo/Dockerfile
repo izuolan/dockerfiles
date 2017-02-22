@@ -1,6 +1,7 @@
 FROM mhart/alpine-node
-ENV HEXO=$HOME/hexo
-ENV COMPRESS=false
+
+ENV GIT_USER=izuolan
+ENV GIT_EMAIL=i@zuolan.me
 
 WORKDIR /hexo
 COPY monitor.sh /monitor.sh
@@ -19,15 +20,11 @@ RUN apk add --update --no-cache git openssh inotify-tools && \
     rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
 
-VOLUME ["/host_dir", \
-        "/mnt", \
-        "/root/.ssh", \
-        "/root/.gitconfig"]
-
-RUN npm install --save hexo-renderer-jade && \
-    npm install --save hexo-deployer-git && \
+RUN npm install --save hexo-deployer-git && \
     npm install --save hexo-deployer-shell && \
     npm install --save hexo-neat && \
     npm install --save hexo-offline
 
+VOLUME ["/mnt", "/root/.ssh"]
+        
 ENTRYPOINT ["/monitor.sh"]
