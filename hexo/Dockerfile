@@ -23,7 +23,7 @@ RUN apk add --update --no-cache git openssh inotify-tools && \
 RUN npm install --save hexo-deployer-git && \
     npm install --save hexo-deployer-shell && \
     npm install --save hexo-neat && \
-    npm install --save hexo-offline
+    npm install --save hexo-auto-canonical
 
 VOLUME ["/mnt", "/root/.ssh"]
         
