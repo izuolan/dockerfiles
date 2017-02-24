@@ -1,0 +1,30 @@
+FROM mhart/alpine-node
+
+ENV GIT_USER=izuolan
+ENV GIT_EMAIL=i@zuolan.me
+
+WORKDIR /hexo
+COPY monitor.sh /monitor.sh
+
+RUN apk add --update --no-cache git openssh inotify-tools && \
+    npm install hexo-cli -g && \
+    hexo init . && \
+    npm install && \
+    chmod a+x /monitor.sh && \
+    rm -rf /hexo/source /hexo/themes /hexo/_config.yml && \
+    mkdir -p /mnt/source /mnt/themes /mnt/public && \
+    ln -s /mnt/source /hexo/source && \
+    ln -s /mnt/themes /hexo/themes && \
+    ln -s /mnt/public /hexo/public && \
+    ln -s /mnt/_config.yml /hexo/_config.yml && \
+    rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
+
+RUN npm install --save \
+        hexo-deployer-git \
+        hexo-deployer-shell \
+        hexo-neat
+
+VOLUME ["/mnt", "/root/.ssh"]
+        
+ENTRYPOINT ["/monitor.sh"]

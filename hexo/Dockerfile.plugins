@@ -1,8 +1,0 @@
-FROM zuolan/hexo
-RUN npm install --save hexo-generator-seo-friendly-sitemap && \
-    npm install --save hexo-generator-feed && \
-    npm install --save hexo-generator-archive && \
-    npm install --save hexo-generator-category && \
-    npm install --save hexo-generator-tag && \
-    npm install --save hexo-renderer-jade && \
-    npm install --save hexo-toc
