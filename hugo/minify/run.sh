@@ -6,7 +6,7 @@ echo "正在压缩页面："
 npm run build
 echo "页面已经压缩，容器进入监视状态。"
 VOLUMES="/work/html"
-INOTIFY_EVENTS="ate,delete,modify,move"
+INOTIFY_EVENTS="create,delete,modify,move"
 INOTIFY_OPTONS="--monitor --exclude=public"
 inotifywait -rqe ${INOTIFY_EVENTS} ${INOTIFY_OPTONS} ${VOLUMES} | \
     while read -r notifies;
