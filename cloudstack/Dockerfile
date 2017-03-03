@@ -26,4 +26,4 @@ RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/reposito
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN git clone https://github.com/apache/cloudstack.git /root
 WORKDIR /root
-RUN mvn -Pdeveloper -Dsimulator -DskipTests clean install
+RUN mvn -Pdeveloper -Dsimulator -DskipTests -X -e clean install
