@@ -1,0 +1,18 @@
+FROM zuolan/glusterfs
+
+ENV GLUSTER_VOL_NAME vol
+ENV GLUSTER_REPLICA 2
+ENV GLUSTER_BRICK_PATH /volume
+ENV GLUSTER_PEER **ChangeMe**
+ENV SERVER_IP **ChangeMe**
+ENV DEBUG 0
+
+VOLUME ["/volume"]
+
+COPY server/run.sh /run.sh
+COPY server/prepare-gluster.sh /prepare-gluster.sh
+COPY server/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /var/log/supervisor && \
+    chmod +x /*.sh
+
+CMD ["/run.sh"]
