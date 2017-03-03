@@ -11,6 +11,7 @@ RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/reposito
         openssl-dev \
         git \
         sudo \
+        bash \
         # ipmitool \
         maven \
         python-dev \
