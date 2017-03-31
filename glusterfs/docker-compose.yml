@@ -1,0 +1,23 @@
+version: '2'
+services:
+  server:
+    container_name: server
+    image: zuolan/glusterfs:server
+    volumes:
+      - "~/server_data:/volume"
+    restart: always
+    environment:
+      GLUSTER_PEER: 172.17.0.8
+      SERVER_IP: 172.17.0.7
+    network_mode: host
+  client:
+    container_name: client
+    image: zuolan/glusterfs:client
+    volumes:
+      - "~/client_data:/volume"
+    depends_on:
+      - server
+    restart: always
+    environment:
+      GLUSTER_PEER: 172.17.0.7
+    network_mode: host

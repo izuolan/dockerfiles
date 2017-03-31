@@ -7,12 +7,9 @@ ENV GLUSTER_PEER **ChangeMe**
 ENV SERVER_IP **ChangeMe**
 ENV DEBUG 0
 
-VOLUME ["/volume"]
-
 COPY server/run.sh /run.sh
-COPY server/prepare-gluster.sh /prepare-gluster.sh
 COPY server/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN mkdir -p /var/log/supervisor && \
-    chmod +x /*.sh
+RUN chmod +x /run.sh
+VOLUME ["$GLUSTER_BRICK_PATH"]
 
 CMD ["/run.sh"]

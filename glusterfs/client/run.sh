@@ -4,6 +4,9 @@ set -e
 
 [ "$DEBUG" == "1" ] && set -x && set +e
 
+/etc/init.d/glusterfs-server start
+sleep 5
+
 if [ "${GLUSTER_PEER}" == "**ChangeMe**" ]; then
    echo "ERROR: You did not specify "GLUSTER_PEER" environment variable - Exiting..."
    exit 0
@@ -31,4 +34,4 @@ mount -t glusterfs ${PEER}:/${GLUSTER_VOL_NAME} ${GLUSTER_VOL_PATH}
 
 # public_ip=`dig -4 @ns1.google.com -t txt o-o.myaddr.l.google.com +short | sed "s/\"//g"`
 
-/usr/bin/supervisord
+/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf

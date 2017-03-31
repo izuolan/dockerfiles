@@ -5,10 +5,9 @@ ENV GLUSTER_VOL_PATH /volume
 ENV GLUSTER_PEER **ChangeMe**
 ENV DEBUG 0
 
+COPY client/run.sh /run.sh
 COPY client/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY client/*.sh /
-RUN mkdir -p /var/log/supervisor ${GLUSTER_VOL_PATH} && \
-    chmod +x /*.sh
+RUN chmod +x /run.sh
 WORKDIR ${GLUSTER_VOL_PATH}
 VOLUME ["${GLUSTER_VOL_PATH}"]
 
