@@ -10,8 +10,8 @@ RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/reposito
     apk add --no-cache --virtual BUILD build-base && \
     make && make install && \
     apk del BUILD && \
-    mv /build/client.sh /run.sh && \
-    rm -rf /build /var/cache/apk/* && \
-    chmod a+x /run.sh
-ENV IP=127.0.0.1 MIDDLE_PORT=8000 SSH_PORT=22 PASSWORD=pasword
+    mv /build/server.sh /run.sh && \
+    chmod a+x /run.sh && \
+    rm -rf /var/cache/apk/* /build
+ENV PASSWORD=password
 CMD ["/run.sh"]
