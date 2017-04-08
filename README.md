@@ -4,7 +4,7 @@
 
 There are README within the folders.
 
-# Contect Me
+# Contact me
 No matter where I am, will be immediately received.
 My Email: `echo "aUB6dW9sYW4ubWUK" | base64 -d`
 
