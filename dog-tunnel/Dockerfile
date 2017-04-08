@@ -42,5 +42,4 @@ RUN apk update && \
     rm -rf /usr/lib/go && \
     rm -rf /dog-tunnel;
 CMD ["/usr/bin/dtunnel_lite", "-service 0.0.0.0:${SERVER_PORT} -v -action ${ACTION} -xor ${XOR} -auth ${AUTH} -dnscache ${DNSCACHE}"]
-
 # CMD ["/usr/bin/dtunnel_lite", "-service 0.0.0.0:${SERVER_PORT} -local :${LOCAL_PORT} -v -action ${ACTION} -xor ${XOR} -auth ${AUTH} -encrypt -session_timeout ${TIMEOUT} -smartN ${SMARTN} -pipe ${PIPE}"]
