@@ -5,9 +5,8 @@ RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/reposito
     echo '@community http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
     echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     apk add --no-cache \
-    libpcap-dev \
-    linux-headers && \
-    apk add --no-cache --virtual BUILD build-base && \
+    libpcap && \
+    apk add --no-cache --virtual BUILD linux-headers libpcap-dev build-base && \
     make && make install && \
     apk del BUILD && \
     mv /build/client.sh /run.sh && \
