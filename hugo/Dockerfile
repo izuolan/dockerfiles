@@ -1,7 +1,5 @@
-FROM alpine
+FROM busybox
+ENV BASE_URL=http://example.com/
 WORKDIR /hugo
-COPY run.sh /run.sh
-RUN apk add --no-cache inotify-tools hugo && \
-    chmod a+x /run.sh
-VOLUME ["/hugo"]
-CMD ["/run.sh"]
+ADD hugo run.sh /bin/
+CMD ["run.sh"]
