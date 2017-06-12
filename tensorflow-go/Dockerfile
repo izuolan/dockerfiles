@@ -40,4 +40,4 @@ EXPOSE 8888
 
 WORKDIR "/go"
 
-CMD ["/run_jupyter.sh"]
+CMD ["/run_jupyter.sh", "--allow-root"]
