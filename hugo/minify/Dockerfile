@@ -1,9 +1,8 @@
 FROM mhart/alpine-node
-WORKDIR /work
+ENV BASE_URL=http://example.com/
 COPY . /work
-RUN mkdir /work/html && \
-    npm install && \
-    apk add --no-cache inotify-tools && \
+RUN cd /work && npm install && \
+    apk add --no-cache hugo && \
     chmod a+x /work/run.sh
-VOLUME ["/work/html"]
+WORKDIR /hugo
 CMD ["/work/run.sh"]
