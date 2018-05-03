@@ -8,13 +8,13 @@ services:
       - GIT_USER=izuolan
       - GIT_EMAIL=i@zuolan.me
     volumes:
-      - ./:/mnt
+      - ./blog:/hexo
       - $HOME/.ssh:/root/.ssh
   nginx:
     container_name: blog
     image: nginx:alpine
     restart: always
     volumes:
-      - ./public:/usr/share/nginx/html:ro
+      - ./blog/public:/usr/share/nginx/html:ro
     ports:
       - "4000:80"

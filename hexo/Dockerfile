@@ -1,12 +1,16 @@
-FROM zuolan/hexo:base
-RUN npm install --save \
-        hexo-generator-seo-friendly-sitemap \
-        hexo-generator-feed \
-        hexo-generator-archive \
-        hexo-generator-category \
-        hexo-generator-tag \
-        hexo-generator-json-content
+FROM node:alpine
 
-RUN npm install --save \
-        hexo-renderer-jade \
-        hexo-toc
+ENV GIT_USER=izuolan
+ENV GIT_EMAIL=i@zuolan.me
+
+WORKDIR /hexo
+
+RUN apk add --update --no-cache git openssh entr && \
+    npm install hexo-cli -g && \
+    rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
+
+COPY monitor.sh /monitor.sh
+VOLUME ["/hexo", "/root/.ssh"]
+        
+CMD ["sh", "/monitor.sh"]
