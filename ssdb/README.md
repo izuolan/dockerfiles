@@ -1,4 +1,4 @@
-#### [ssdb](http://ssdb.io/)
+#### [zuolan/ssdb](https://hub.docker.com/r/zuolan/ssdb/)
 
 - Port: 8890
 - Volume: /ssdb/var
