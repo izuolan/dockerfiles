@@ -1,8 +1,8 @@
 #### [ssdb](http://ssdb.io/)
 
-Port: 8890
-Volume: /ssdb/var
-Config: /ssdb/ssdb.conf
+- Port: 8890
+- Volume: /ssdb/var
+- Config: /ssdb/ssdb.conf
 
 via Docker:
 

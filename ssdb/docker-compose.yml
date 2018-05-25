@@ -3,12 +3,11 @@ version: '3'
 services:
 
   ssdb:
-    build:
-      dockerfile: ./Dockerfile
+    image: zuolan/ssdb
     # container_name: ssdb
     restart: always
     volumes:
-      - ./data:/ssdb/var
+      - ./var:/ssdb/var
       - ./ssdb.conf:/ssdb/ssdb.conf:ro
     ports:
       - 8890:8890
